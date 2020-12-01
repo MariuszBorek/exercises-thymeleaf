@@ -18,14 +18,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/api/users").authenticated()
+                .antMatchers("/menu").permitAll()
+                .antMatchers("/api/users/create").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/api/users").hasRole("USER")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .defaultSuccessUrl("/menu")
                 .and()
                 .headers().frameOptions().disable();
+
+//        http.authorizeRequests()
+//                .antMatchers("/api/users").authenticated()
+//                .antMatchers("/h2-console/**").permitAll()
+//                .anyRequest().permitAll()
+//                .and()
+//                .formLogin()
+//                .defaultSuccessUrl("/menu")
+//                .and()
+//                .headers().frameOptions().disable();
 
     }
 }

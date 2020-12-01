@@ -1,6 +1,7 @@
 package com.example.exercises.service;
 
 import com.example.exercises.domain.forms.UserCreatorForm;
+import com.example.exercises.domain.model.Role;
 import com.example.exercises.domain.model.User;
 import com.example.exercises.domain.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -29,11 +32,23 @@ public class UserService implements UserDetailsService {
 
     // --------------------------------------
 
-    public void createUser(String username, String password, List<String> roles){
+    public void createUser(UserCreatorForm userCreatorForm){
         User user = new User();
-        user.setRoles(roles);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setUsername(username);
+        user.setFirstName(userCreatorForm.getFirstName());
+        user.setLastName(userCreatorForm.getLastName());
+        user.setRoles(Collections.singletonList(new Role("ROLE_USER")));
+        user.setPassword(passwordEncoder.encode(userCreatorForm.getPassword()));
+        user.setUsername(userCreatorForm.getUsername());
+        userRepository.save(user);
+    }
+
+    public void createAdmin(UserCreatorForm userCreatorForm){
+        User user = new User();
+        user.setFirstName(userCreatorForm.getFirstName());
+        user.setLastName(userCreatorForm.getLastName());
+        user.setRoles(Arrays.asList(new Role("ROLE_ADMIN"), new Role("ROLE_USER")));
+        user.setPassword(passwordEncoder.encode(userCreatorForm.getPassword()));
+        user.setUsername(userCreatorForm.getUsername());
         userRepository.save(user);
     }
 

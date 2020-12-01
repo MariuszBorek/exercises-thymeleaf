@@ -10,48 +10,26 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">username</th>
+                <th scope="col">first name</th>
+                <th scope="col">last name</th>
                 <th scope="col">Action</th>
             </tr>
             <tr th:each="user : ${users}">
                 <th scope="row" th:text="${user.id}"></th>
                 <th scope="row" th:text="${user.username}"></th>
+                <th scope="row" th:text="${user.firstName}"></th>
+                <th scope="row" th:text="${user.lastName}"></th>
                 <th scope="row">
-                    <a th:href="@{/api/users/edit/{id}(id=${user.id})}">Edit</a>
-                    <a th:if="${user.getRoles().get(0)=='ROLE_ADMIN'}" th:href="@{/api/users/delete/{id}(id=${user.id})}">Delete</a>
+                    <a class="btn btn-secondary" th:href="@{/api/users/edit/{id}(id=${user.id})}">Edit</a>
+                    <a class="btn btn-danger" th:href="@{/api/users/delete/{id}(id=${user.id})}">Delete</a>
                 </th>
             </tr>
         </table>
     </div>
+
     <div>
         <button type="button" th:onclick="goToMenu()" class="btn btn-primary">go back to menu</button>
     </div>
-
-    <hr>
-
-    <div class="text-center">
-        <img th:src="@{/images/samplephoto.jpg}" class="rounded" alt="some photo">
-    </div>
-
-    <hr>
-
-    <div th:switch="${number}">
-        <p th:case="1" th:text="${txt}">chosen number 1</p>
-        <p th:case="2" th:text="${txt}">chosen number 2</p>
-        <p th:case="3" th:text="${txt}">chosen number 3</p>
-        <p th:case="4" th:text="${txt}">chosen number 4</p>
-        <p th:case="*" th:text="${txt}">some number</p>
-    </div>
-
-    <hr>
-
-    <div>
-        <a class="btn btn-primary" th:if="${role} == 'ADMIN'" >update</a>
-        <a class="btn btn-danger" th:if="${role} == 'ADMIN'" >delete</a>
-        <a class="btn btn-primary" th:unless="${role} == 'ADMIN'" >view</a>
-        <a class="btn btn-primary" th:unless="${role} == 'USER'" >check</a>
-    </div>
-
-
 </div>
 
 

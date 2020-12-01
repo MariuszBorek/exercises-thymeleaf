@@ -1,6 +1,6 @@
-div {
-    height: 30px;
+#theDiv {
+    height: 100px;
     width: 100px;
-    background: #c47070;
-    margin-bottom: 5px;
+    background: gray;
+    margin: 10px;
 }

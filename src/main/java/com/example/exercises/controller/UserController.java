@@ -22,15 +22,6 @@ public class UserController {
     @GetMapping
     public String findAllUsers(Model model) {
         model.addAttribute("users", userService.findAll());
-
-        Integer number = 3;
-        String myTxt = "your number is " + number;
-        model.addAttribute("number", number);
-        model.addAttribute("txt", myTxt);
-
-        String sampleRole = "ADMIN";
-        model.addAttribute("role", sampleRole);
-
         return "user/list";
     }
 
@@ -42,7 +33,7 @@ public class UserController {
 
     @PostMapping("/create")
     public String createUser(@ModelAttribute("userForm") UserCreatorForm userForm) {
-        userService.createUser(userForm.getUsername(), userForm.getPassword(), Collections.singletonList("ROLE_USER"));
+        userService.createUser(userForm);
         return "redirect:/menu";
     }
 

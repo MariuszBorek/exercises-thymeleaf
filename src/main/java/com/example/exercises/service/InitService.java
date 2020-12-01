@@ -1,8 +1,7 @@
 package com.example.exercises.service;
 
+import com.example.exercises.domain.forms.UserCreatorForm;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 @Service
 public class InitService {
@@ -15,14 +14,8 @@ public class InitService {
     }
 
     private void init() {
-        userService.createUser("admin","qaz", Collections.singletonList("ROLE_ADMIN"));
-        userService.createUser("admin1","qaz", Collections.singletonList("ROLE_ADMIN"));
-        userService.createUser("admin2","qaz", Collections.singletonList("ROLE_ADMIN"));
-        userService.createUser("user","qwe", Collections.singletonList("ROLE_USER"));
-        userService.createUser("user1","qwe", Collections.singletonList("ROLE_USER"));
-        userService.createUser("user2","qwe", Collections.singletonList("ROLE_USER"));
-        userService.createUser("user3","qwe", Collections.singletonList("ROLE_USER"));
-        userService.createUser("user4","qwe", Collections.singletonList("ROLE_USER"));
-
+        userService.createUser(new UserCreatorForm("Weronika", "Kowalska","user","qwerty"));
+        userService.createUser(new UserCreatorForm("Andrzej", "Lis","user1","qwerty"));
+        userService.createAdmin(new UserCreatorForm("Jarek", "Bogocz","admin","qwerty"));
     }
 }
