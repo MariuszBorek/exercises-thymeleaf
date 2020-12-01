@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/menu.css}" rel="stylesheet">
+</head>
+<body>
+<h2>MENU</h2>
+<div>
+    <a th:href="@{/api/users}">show users</a>
+</div>
+<div>
+    <a th:href="@{/api/users/create}">create user</a>
+</div>
+<div>
+    <a th:href="@{/login}">log in</a>
+</div>
+<div>
+    <a th:href="@{/logout}">log out</a>
+</div>
+<div>
+    <button type="button" th:onclick="showTheDivContent()">show something</button>
+</div>
+<div id="theDiv">
+</div>
+
+<button type="button" th:onclick="doSomething()">do something</button>
+<button type="button" th:onclick="goToUserList()">go to user list</button>
+
+
+<script type="text/javascript" th:src="@{/js/actions.js}"></script>
+
+</body>
+</html>
