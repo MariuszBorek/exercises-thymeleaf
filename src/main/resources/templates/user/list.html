@@ -30,6 +30,9 @@
     <div>
         <button type="button" th:onclick="goToMenu()" class="btn btn-primary">go back to menu</button>
     </div>
+    <br>
+    <p>user details</p>
+    <p th:text="${#httpServletRequest.remoteUser}"></p>
 </div>
 
 

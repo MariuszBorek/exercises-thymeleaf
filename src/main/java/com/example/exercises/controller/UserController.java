@@ -5,9 +5,10 @@ import com.example.exercises.domain.forms.UserCreatorForm;
 import com.example.exercises.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("api/users")
@@ -32,9 +33,17 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String createUser(@ModelAttribute("userForm") UserCreatorForm userForm) {
-        userService.createUser(userForm);
-        return "redirect:/menu";
+    public String createUser(
+            @Valid @ModelAttribute("userForm") UserCreatorForm userForm,
+            BindingResult result,
+            Model model) {
+        if(!result.hasErrors()) {
+            userService.createUser(userForm);
+            return "redirect:/menu";
+        } else {
+            model.addAttribute("userForm", userForm);
+            return "user/create-user";
+        }
     }
 
     @GetMapping("/delete/{id}")

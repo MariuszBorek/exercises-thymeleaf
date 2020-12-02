@@ -3,9 +3,15 @@ package com.example.exercises.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MenuController {
+
+    @GetMapping
+    public String redirectToMenu() {
+        return "redirect:/menu";
+    }
 
     @GetMapping("/menu")
     public String menu(Model model) {
@@ -27,6 +33,15 @@ public class MenuController {
     @GetMapping("/admin")
     public String admin() {
         return "info-admin";
+    }
+
+    @GetMapping("hello")
+    public String hello(
+            @RequestParam(value = "name", defaultValue = "Word", required = true) String name,
+            Model model) {
+        model.addAttribute("nameFromParam", name);
+        return "hello";
+
     }
 
 }

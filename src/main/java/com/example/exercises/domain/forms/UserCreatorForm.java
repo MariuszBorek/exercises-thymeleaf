@@ -2,10 +2,15 @@ package com.example.exercises.domain.forms;
 
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class UserCreatorForm {
 
     private String firstName;
     private String lastName;
+    @NotBlank
+    @Size(min = 6, max = 10, message = "you need to put 6 - 10 signs")
     private String username;
     private String password;
 
