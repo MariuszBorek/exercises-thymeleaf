@@ -1,5 +1,8 @@
 package com.example.exercises.controller;
 
+import com.example.exercises.domain.model.Role;
+import com.example.exercises.domain.model.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,13 +38,22 @@ public class MenuController {
         return "info-admin";
     }
 
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public String hello(
             @RequestParam(value = "name", defaultValue = "Word", required = true) String name,
             Model model) {
         model.addAttribute("nameFromParam", name);
         return "hello";
 
+    }
+
+    @GetMapping("/user_home")
+    public String viewUserHome(
+            @AuthenticationPrincipal User user,
+            Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("admin", new Role("ROLE_ADMIN"));
+        return "user/user_home";
     }
 
 }

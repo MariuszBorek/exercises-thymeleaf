@@ -14,8 +14,8 @@ public class InitService {
     }
 
     private void init() {
-        userService.createUser(new UserCreatorForm("Weronika", "Kowalska","user","qwerty"));
-        userService.createUser(new UserCreatorForm("Andrzej", "Lis","user1","qwerty"));
-        userService.createAdmin(new UserCreatorForm("Jarek", "Bogocz","admin","qwerty"));
+        userService.createUser(new UserCreatorForm("Weronika", "Kowalska","user","q"));
+        userService.createUser(new UserCreatorForm("Andrzej", "Lis","user1","q"));
+        userService.createAdmin(new UserCreatorForm("Jarek", "Bogocz","admin","q"));
     }
 }
